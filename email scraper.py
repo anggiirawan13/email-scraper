@@ -6,11 +6,16 @@ import requests
 import urllib.parse
 
 userURL = str(input('[+] Enter URL : '))
+
+if not userURL.startswith('https'):
+        tempUserURL = 'https://' + userURL
+        userURL = tempUserURL
+
 urls = deque([userURL])
 scrapedURLS = set()
 emails = set()
 count = 0
-limit = input('[+] Enter limit search : ')
+limit = int(input('[+] Enter limit search : '))
 
 try:
     while True:
@@ -18,13 +23,13 @@ try:
         if count > limit:
             break
 
-        url = urls.popleft()
+        url = urls.popleft() if len(urls) > 0 else ''
         scrapedURLS.add(url)
         parts = urllib.parse.urlsplit(url)
         baseURL = f'{parts.scheme}://{parts.netloc}'
         path = url[:url.rfind('/') + 1] if '/' in parts.path else url
 
-        print(f'{count} Process : {url}')
+        print(f'{count} Process\t: {url}')
 
         try:
             resp = requests.get(url)
