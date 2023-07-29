@@ -56,6 +56,4 @@ print('\nDone!')
 print(f'\n{len(emails)} emails found!\n==================================================')
 
 for mail in emails:
-    print('  ' + mail)
-
-print('\n')
+    print(mail)
