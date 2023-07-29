@@ -8,8 +8,7 @@ import urllib.parse
 userURL = str(input('[+] Enter URL : '))
 
 if not userURL.startswith('https'):
-        tempUserURL = 'https://' + userURL
-        userURL = tempUserURL
+    userURL = f'https://{userURL}'
 
 urls = deque([userURL])
 scrapedURLS = set()
